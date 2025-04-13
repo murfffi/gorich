@@ -7,9 +7,8 @@ library [stretchr/testify](https://github.com/stretchr/testify).
 [![Go Report Card](https://goreportcard.com/badge/github.com/murfffi/gorich)](https://goreportcard.com/report/github.com/murfffi/gorich)
 [![Tests](https://github.com/murfffi/gorich/actions/workflows/ci.yml/badge.svg)](https://coveralls.io/github/murfffi/gorich)
 
-`gorich` is meant to complement [samber/lo](https://github.com/samber/lo)
-
-- a popular library with the same goal - so `gorich` doesn't contain anything already available there.
+`gorich` is meant to complement [samber/lo](https://github.com/samber/lo) - a popular library with the same goal - 
+so `gorich` doesn't contain anything already available there.
 
 ## Installation
 
@@ -21,4 +20,4 @@ go get github.com/murfffi/gorich
 
 ## Documentation
 
-See The Go documentation at ...
+See The Go documentation at <https://pkg.go.dev/github.com/murfffi/gorich> .
