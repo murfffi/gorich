@@ -12,7 +12,7 @@ so `gorich` doesn't contain anything already available there.
 
 ## Installation
 
-Add `impala-go` to your Go module as usual:
+Add `gorich` to your Go module as usual:
 
 ```bash
 go get github.com/murfffi/gorich
