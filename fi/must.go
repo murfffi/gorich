@@ -33,11 +33,3 @@ func NoErrorF(f func() error, t assert.TestingT) {
 	err := f()
 	assert.NoError(t, err)
 }
-
-// Bind converts a single-parameter function to a no-parameter one by binding the given
-// value to the parameter. Useful together with NoErrorF or defer.
-func Bind[T any, E any](f func(t T) E, t T) func() E {
-	return func() E {
-		return f(t)
-	}
-}

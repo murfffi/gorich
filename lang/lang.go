@@ -11,3 +11,11 @@ func IfEmpty[T comparable](value, alt T) T {
 	}
 	return alt
 }
+
+// Bind converts a single-parameter function to a no-parameter one by binding the given
+// value to the parameter. Useful together with fi.NoErrorF or defer.
+func Bind[T any, E any](f func(t T) E, t T) func() E {
+	return func() E {
+		return f(t)
+	}
+}

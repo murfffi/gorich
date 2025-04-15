@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/murfffi/gorich/fi"
+	"github.com/murfffi/gorich/lang"
 	"github.com/stretchr/testify/require"
 )
 
@@ -19,6 +20,6 @@ func TestNoErrorF(t *testing.T) {
 	var calledStub testingT = func(string, ...any) {
 		called = true
 	}
-	fi.NoErrorF(fi.Bind(errors.New, "test"), calledStub)
+	fi.NoErrorF(lang.Bind(errors.New, "test"), calledStub)
 	require.Equal(t, true, called)
 }
