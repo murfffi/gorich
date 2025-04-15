@@ -1,5 +1,7 @@
 # gorich
 
+EXPERIMENTAL: Before v1, the public API may change wildly.
+
 `gorich` adds useful features to the Go standard library and the popular testing
 library [stretchr/testify](https://github.com/stretchr/testify).
 
