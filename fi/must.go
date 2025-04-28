@@ -5,27 +5,38 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// Requirement associates checks with a value
+type Requirement[T any] struct {
+	// The value returned by Require if the check passes
+	Val   T
+	Check func(t require.TestingT)
+}
+
 // NoError defines a requirement that the result of the function
-// is can be used and the associated error is nil
+// can be used, and the associated error is nil
 func NoError[T any](val T, err error) Requirement[T] {
 	return Requirement[T]{
-		val: val,
-		check: func(t require.TestingT) {
+		Val: val,
+		Check: func(t require.TestingT) {
 			require.NoError(t, err)
 		},
 	}
 }
 
-// Requirement associate checks with a value
-type Requirement[T any] struct {
-	val   T
-	check func(t require.TestingT)
+// FileExists defines a requirement that the file exists (experimental)
+func FileExists(path string) Requirement[string] {
+	return Requirement[string]{
+		Val: path,
+		Check: func(t require.TestingT) {
+			require.FileExists(t, path)
+		},
+	}
 }
 
-// Require returns the Requirement value if the check doesn't fail the current test
+// Require returns the Requirement value if the Check doesn't fail the current test
 func (r Requirement[T]) Require(t require.TestingT) T {
-	r.check(t)
-	return r.val
+	r.Check(t)
+	return r.Val
 }
 
 // NoErrorF fails the current test if f returns an error. Useful in defer.
