@@ -8,7 +8,9 @@ import (
 
 // CloseQuietly closes the given object ignoring errors. Useful in defer.
 func CloseQuietly(r io.Closer) {
-	_ = r.Close()
+	if r != nil {
+		_ = r.Close()
+	}
 }
 
 // ContainsAny checks if the error message contains any of the substrings
