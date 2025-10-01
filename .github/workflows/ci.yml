@@ -24,9 +24,7 @@ jobs:
         run: go build -v ./...
 
       - name: Test
-        run: |
-          sudo apt-get install moreutils -y
-          make test
+        run: make test
         env:
           CGO_ENABLED: 0
 
