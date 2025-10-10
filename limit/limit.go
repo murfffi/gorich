@@ -1,7 +1,10 @@
-// Package attempt provides means to attempt execution of functions
-// with various safeguards e.g. with limits on execution time.
+// Package limit provides means to limit the duration of functions
 // It is meant to complement samber/lo utilities like Attempt and WaitFor .
-package attempt
+//
+// Functions in this package pair well with lang.ReaderContains
+// or regexp.MatchReader which are not context-aware and can take a long time,
+// especially on slow or unbounded readers like process pipes or network streams.
+package limit
 
 import (
 	"context"
