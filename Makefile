@@ -1,7 +1,12 @@
 short-test:
 	go test -short -v ./...
 
-test:
+#NB: CI uses the golangci-lint Github action, not this target
+.PHONY: lint
+lint: tools/golangci-lint
+	tools/golangci-lint run -v
+
+test: tools/ts
 	mkdir -p coverage/covdata
 # Use the new binary format to ensure cross-package calls are counted towards coverage
 # https://go.dev/blog/integration-test-coverage
@@ -27,3 +32,19 @@ check_tidy:
 	go mod tidy
 	# Verify that `go mod tidy` didn't introduce any changes. Run go mod tidy before pushing.
 	git diff --exit-code --stat go.mod go.sum
+
+tools:
+	mkdir -p tools
+
+tools/ts: tools
+# ts is a perl script. perl is installed on most linux systems, and in Ubuntu Github runners.
+	curl -L -o tools/ts https://github.com/pgdr/moreutils/raw/a87889a3bf06fb6be6022b14c152f2f7de608910/ts
+	@echo "96a9504920a81570e0fc5df9c7a8be76b043261d9ed4a702af0238bdbe5ad5ea  tools/ts" | sha256sum --check --strict
+	chmod +x tools/ts
+
+tools/golangci-lint: tools
+# Version must be the same as in golangci-lint Github action
+# We install golangci-lint as recommended in the docs. See the same docs for a discussion about go run and
+# go get -tool alternatives - https://golangci-lint.run/docs/welcome/install/ .
+# Delete tools/golangci-lint if this target is updated (may be automated in the future)
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/HEAD/install.sh | sh -s -- -b ./tools v2.5.0
