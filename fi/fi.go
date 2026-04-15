@@ -30,7 +30,7 @@ func RequireConditionWithTimeout(t require.TestingT, comp assert.Comparison, tim
 	require.True(t, res, condMessage)
 }
 
-// RequireReaderContains asserts that substr appears is read by r within timeout
+// RequireReaderContains asserts that substr is read by r within timeout
 func RequireReaderContains(t require.TestingT, r io.Reader, substr string, timeout time.Duration, readerLabel string) {
 	RequireConditionWithTimeout(
 		t,

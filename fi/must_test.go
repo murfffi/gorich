@@ -2,6 +2,7 @@ package fi_test
 
 import (
 	"errors"
+	"regexp"
 	"testing"
 
 	"github.com/murfffi/gorich/fi"
@@ -22,4 +23,9 @@ func TestNoErrorF(t *testing.T) {
 	}
 	fi.NoErrorF(lang.Bind(errors.New, "test"), calledStub)
 	require.Equal(t, true, called)
+}
+
+func TestNoError(t *testing.T) {
+	re := fi.NoError(regexp.Compile(".")).Require(t)
+	require.NotNil(t, re)
 }
