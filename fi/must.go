@@ -14,6 +14,9 @@ type Requirement[T any] struct {
 
 // NoError defines a requirement that the result of the function
 // can be used, and the associated error is nil
+//
+// The signature of this function matches exactly the result of common functions
+// that return a value and an error. See unit tests for an example.
 func NoError[T any](val T, err error) Requirement[T] {
 	return Requirement[T]{
 		Val: val,
