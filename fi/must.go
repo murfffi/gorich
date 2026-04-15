@@ -17,7 +17,7 @@ type Requirement[T any] struct {
 //
 // The signature of this method matches exactly the result of common functions
 // that return a value and an error. See unit tests for an example.
-// The expected addition of generic methods in Go 1.27 will help simplfy this.
+// The expected addition of generic methods in Go 1.27 will help simplify this.
 func NoError[T any](val T, err error) Requirement[T] {
 	return Requirement[T]{
 		Val: val,
